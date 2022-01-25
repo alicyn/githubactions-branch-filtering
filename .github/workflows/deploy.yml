@@ -1,0 +1,32 @@
+name: deploy
+on: push
+
+jobs:
+  ci:
+    uses: alicyn/githubactions-branch-filtering/.github/workflows/ci.yml@main
+
+  kustomize: #don't run on feature branches
+    name: kustomize
+    runs-on: ubuntu-18.04
+    if: |
+      endsWith(github.ref, '/main') ||
+      endsWith(github.ref, '/production')
+    needs: ci
+    env: 
+      TEST_ENV: my-test-env-var-value
+
+    steps:
+
+    - name: debug output
+      env: 
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: |
+        echo "github ref: ${{ github.ref }}" 
+        echo "GITHUB_REF_NAME: ${{ GITHUB_REF_NAME }}"
+        echo "event name: ${{ github.event_name }}"
+        echo "$GITHUB_CONTEXT"
+
+    - name: test step 2
+      if: endsWith(github.ref, '/main')
+      run: |
+        echo "made it here"

@@ -1,0 +1,17 @@
+name: test and build
+on:
+  workflow_call:
+    outputs:
+      image_tag:
+        description: "test"
+        value: ${{ jobs.test.outputs.image_tags }}
+
+jobs: 
+  test:
+    runs-on: ubuntu-18.04
+    outputs:
+      image_tags: "my_tag"
+    steps: 
+    - name: Step1
+      run: |
+        echo "Step1"
