@@ -22,7 +22,7 @@ jobs:
         GITHUB_CONTEXT: ${{ toJson(github) }}
       run: |
         echo "github ref: ${{ github.ref }}" 
-        echo "GITHUB_REF_NAME: ${{ GITHUB_REF_NAME }}"
+        echo "GITHUB_REF_NAME: $GITHUB_REF_NAME"
         echo "event name: ${{ github.event_name }}"
         echo "$GITHUB_CONTEXT"
 
