@@ -15,3 +15,14 @@ jobs:
     - name: Step1
       run: |
         echo "Step1"
+
+    - name: debug output on test job
+      env: 
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: |
+        echo "github ref: ${{ github.ref }}" 
+        echo "GITHUB_REF_NAME: $GITHUB_REF_NAME"
+        echo "GITHUB_BASE_REF: $GITHUB_BASE_REF"
+        echo "GITHUB_HEAD_REF: $GITHUB_HEAD_REF"
+        echo "event name: ${{ github.event_name }}"
+        echo "$GITHUB_CONTEXT"
