@@ -12,9 +12,9 @@ jobs:
     outputs:
       image_tags: "my_tag"
     steps: 
-    - name: Step1
+    - name: Step1A
       run: |
-        echo "Step1"
+        echo "Step1A"
 
     - name: debug output on test job
       env: 
@@ -26,3 +26,11 @@ jobs:
         echo "GITHUB_HEAD_REF: $GITHUB_HEAD_REF"
         echo "event name: ${{ github.event_name }}"
         echo "$GITHUB_CONTEXT"
+
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Step 1B # force a failure
+      run: |
+        echo "build step"
+        exit 1 
