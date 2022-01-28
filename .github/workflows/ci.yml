@@ -26,6 +26,7 @@ jobs:
         echo "GITHUB_HEAD_REF: $GITHUB_HEAD_REF"
         echo "event name: ${{ github.event_name }}"
         echo "$GITHUB_CONTEXT"
+        exit 1
 
   build:
     runs-on: ubuntu-18.04
