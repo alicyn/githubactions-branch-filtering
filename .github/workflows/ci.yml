@@ -33,4 +33,3 @@ jobs:
     - name: Step 1B # force a failure
       run: |
         echo "build step"
-        exit 1 
